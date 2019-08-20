@@ -1,4 +1,4 @@
-package com.alienvault.githubissues;
+package com.alienvault;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
