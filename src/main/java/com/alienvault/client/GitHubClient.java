@@ -1,7 +1,9 @@
 package com.alienvault.client;
 
+import com.alienvault.client.data.IssueList;
+
 import java.util.List;
 
 public interface GitHubClient {
-    String getIssues(List<String> repos);
+    IssueList getIssues(List<String> repos);
 }

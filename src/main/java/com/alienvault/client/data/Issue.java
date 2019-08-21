@@ -3,28 +3,33 @@ package com.alienvault.client.data;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Issue {
 
     @JsonProperty("id")
-    public String id;
+    private String id;
 
     @JsonProperty("state")
-    public String state;
+    private String state;
 
     @JsonProperty("title")
-    public String title;
+    private String title;
 
     @JsonProperty("repository_url")
     public String repository;
 
     @JsonProperty("created_at")
-    public String created_at;
+    private String created_at;
 
-    public Issue(String id, String state, String title, String created_at) {
+    public Issue(){}
+
+    public Issue(String id, String state, String title,
+                 String created_at) {
         this.id = id;
         this.state = state;
         this.title = title;
+        //this.repository = repository;
         this.created_at = created_at;
     }
 
