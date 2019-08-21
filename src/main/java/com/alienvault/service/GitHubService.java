@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Map;
@@ -32,10 +32,10 @@ public class GitHubService {
         IssueList issueList = client.getIssues(Arrays.asList("octocat/Hello-World", "octocat/Hello-World"));
 
         issueList.getIssues().sort(
-                Comparator.comparing( (issue -> Instant.parse(issue.getCreated_at()))));
+                Comparator.comparing( Issue::getCreated_atDate));
 
 
-        Map<String, Long> s = issueList.getIssues().stream().peek(issue -> log.info(issue.toString())).collect(Collectors.groupingBy(Issue::getCreated_at, Collectors.counting()));
+        Map<LocalDate, Long> s = issueList.getIssues().stream().peek(issue -> log.info(issue.toString())).collect(Collectors.groupingBy(Issue::getCreated_atDate, Collectors.counting()));
 
         s.entrySet().stream().peek(stringLongEntry -> log.info(stringLongEntry.getKey() + "   "+stringLongEntry.getValue())).count();
         return issueList.toString();

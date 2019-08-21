@@ -3,6 +3,9 @@ package com.alienvault.client.data;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Issue {
@@ -57,6 +60,13 @@ public class Issue {
 
     public void setCreated_at(String created_at) {
         this.created_at = created_at;
+    }
+
+    public LocalDate getCreated_atDate() {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(this.created_at.substring(0, 10), formatter);
+        return date;
     }
 
 
