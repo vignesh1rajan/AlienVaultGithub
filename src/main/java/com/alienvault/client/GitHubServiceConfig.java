@@ -14,15 +14,16 @@ public class GitHubServiceConfig {
     @Autowired
     private
     ObjectMapper mapper;
+
     @Bean
     @Primary
-    public GitHubClient getClient(){
+    public GitHubClient getClient() {
         return new GitHubV3Client(mapper);
     }
 
     @Bean
     @Resource(name = "V4Client")
-    public GitHubClient getV4Client(){
+    public GitHubClient getV4Client() {
         return new GitHubV4Client();
     }
 }

@@ -25,7 +25,8 @@ public class Issue {
     @JsonProperty("created_at")
     private String created_at;
 
-    public Issue(){}
+    public Issue() {
+    }
 
     public Issue(String id, String state, String title,
                  String created_at) {
@@ -49,7 +50,7 @@ public class Issue {
     }
 
     public void setRepository(String repository) {
-        String[] str  = repository.split("repos/");
+        String[] str = repository.split("repos/");
 
         this.repository = str[1];
     }
