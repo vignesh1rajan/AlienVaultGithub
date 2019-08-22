@@ -42,21 +42,20 @@ public class GitHubService {
 
         // Map by Date and count
         Map<LocalDate, Long> issuePerDayMap = issueList.getIssues().stream()
-                .peek(issue -> log.info(issue.toString()))
+                //.peek(issue -> log.info(issue.toString()))
                 .collect(Collectors.groupingBy(Issue::getCreated_atDate, Collectors.counting()));
 
 
         // Find Top issue day
-        Optional<Map.Entry<LocalDate, Long>> maxEntry = issuePerDayMap.entrySet().stream().max(Comparator.comparing(Map.Entry::getValue));
+        Optional<Map.Entry<LocalDate, Long>> maxEntry = issuePerDayMap.entrySet().stream()
+                .max(Comparator.comparing(Map.Entry::getValue));
         LocalDate topDate = maxEntry.get().getKey();
-
-        // maxEntry.ifPresent(entry -> log.info("max entry " + entry.getKey().toString() + entry.getValue()));
-
-        // List<Issue> topIssues = issueList.getIssues().stream().filter(issue -> issue.getCreated_atDate().equals(maxEntry.get().getKey())).collect(Collectors.toList());
 
 
         // Get list to repos, and count by the top issue date
-        Map<String, Long> repoCount = issueList.getIssues().stream().filter(isTopDay(topDate)).collect(Collectors.groupingBy(Issue::getRepository, Collectors.counting()));
+        Map<String, Long> repoCount = issueList.getIssues().stream()
+                .filter(isTopDay(topDate))
+                .collect(Collectors.groupingBy(Issue::getRepository, Collectors.counting()));
 
 
         TopDay topDay = new TopDay(maxEntry.get().getKey().toString(), repoCount);
