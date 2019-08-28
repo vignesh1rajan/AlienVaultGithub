@@ -42,7 +42,7 @@ public class GitHubService {
 
         // Map by Date and count
         Map<LocalDate, Long> issuePerDayMap = issueList.getIssues().stream()
-                .peek(issue -> log.info(issue.toString()))
+                //.peek(issue -> log.info(issue.toString()))
                 .collect(Collectors.groupingBy(Issue::getCreated_atDate, Collectors.counting()));
 
 
