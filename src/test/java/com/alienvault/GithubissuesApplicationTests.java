@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 @RunWith(SpringRunner.class)
@@ -25,7 +26,7 @@ public class GithubissuesApplicationTests {
 
 	@Test
 	public void testService(){
-		service.callGetIssues();
+		service.callGetIssues(Arrays.asList("octocat/Hello-World"));
 	}
 
 
