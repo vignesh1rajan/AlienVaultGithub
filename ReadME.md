@@ -1,6 +1,7 @@
 #  Git Hub Issues
 
-Git Hub Issue service is a spring boot application build on Java 8, using gradle as its build tool
+Git Hub Issue service is a spring boot application build on Java 8, using gradle as its build tool. The client makes a
+rest call to the V3 service to get issues from given owner/issues
 
   Prerequisite:
   
@@ -24,13 +25,11 @@ Git Hub Issue service is a spring boot application build on Java 8, using gradle
    
    ```$json
    
-   POST: http://localhost:8080/
-   Payload: 
-   {
-   	"repositories":[
-   		"octocat/Hello-World",
-       "spring-projects/spring-data-examples"
-   	]
-   }
-    
+         curl -X GET -i http://localhost:8080/repos/issues --data '{
+            "repositories":[
+                "octocat/Hello-World",
+            "spring-projects/spring-data-examples"
+            ]
+        }'
+
 ```

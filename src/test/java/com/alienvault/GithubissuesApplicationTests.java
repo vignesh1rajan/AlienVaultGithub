@@ -1,7 +1,9 @@
 package com.alienvault;
 
 import com.alienvault.client.data.Issue;
+import com.alienvault.ro.IssueRO;
 import com.alienvault.service.GitHubService;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,11 @@ public class GithubissuesApplicationTests {
 
 	@Test
 	public void testService(){
-		service.callGetIssues(Arrays.asList("octocat/Hello-World"));
+		IssueRO issueRO = service.callGetIssues(Arrays.asList("octocat/Hello-World", "octocat/Hello-World"));
+		Assert.assertNotNull(issueRO);
+		Assert.assertNotNull(issueRO.getTop_day());
+		Assert.assertNotNull(issueRO.getIssues());
+
 	}
 
 

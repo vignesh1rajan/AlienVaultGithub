@@ -47,7 +47,7 @@ public class GitHubV3Client implements GitHubClient {
 
             String body = resp.getBody();
 
-            log.info("Response body " + body);
+            log.debug("Response body " + body);
             List<Issue> issues = new ArrayList<>();
             try {
 
@@ -56,6 +56,7 @@ public class GitHubV3Client implements GitHubClient {
 
             } catch (Exception e) {
                 log.error("error mapping object ", e);
+                throw new RuntimeException(e.getMessage());
             }
         }
 
